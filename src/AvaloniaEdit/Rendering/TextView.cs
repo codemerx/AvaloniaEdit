@@ -28,6 +28,7 @@ using System.Linq;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Documents;
+using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
@@ -1567,7 +1568,7 @@ namespace AvaloniaEdit.Rendering
         #region Visual element pointer handling
 
         [ThreadStatic] private static bool _invalidCursor;
-        //private VisualLineElement _currentHoveredElement;
+        private VisualLineElement _currentHoveredElement;
 
         /// <summary>
         /// Updates the pointe cursor, but with background priority.
@@ -1603,15 +1604,16 @@ namespace AvaloniaEdit.Rendering
         {
             base.OnPointerMoved(e);
 
-            //var element = GetVisualLineElementFromPosition(e.GetPosition(this) + _scrollOffset);
+            var element = GetVisualLineElementFromPosition(e.GetPosition(this) + _scrollOffset);
 
-            //// Change back to default if hover on a different element
-            //if (_currentHoveredElement != element)
-            //{
-            //    Cursor = Parent.Cursor; // uses TextArea's ContentPresenter cursor
-            //    _currentHoveredElement = element;
-            //}
-            //element?.OnQueryCursor(e);
+            // Change back to default if hover on a different element
+            if (_currentHoveredElement != element)
+            {
+                Cursor = (Parent as ContentPresenter)?.Cursor; // uses TextArea's ContentPresenter cursor
+                _currentHoveredElement = element;
+            }
+
+            element?.OnQueryCursor(e);
         }
 
         protected override void OnPointerPressed(PointerPressedEventArgs e)
