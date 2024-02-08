@@ -259,5 +259,19 @@ namespace AvaloniaEdit.Rendering
 		protected internal virtual void OnPointerReleased(PointerEventArgs e)
 		{
 		}
+
+		/// <summary>
+		/// Allows the visual line element to handle pointer entered events.
+		/// </summary>
+		protected internal virtual void OnPointerEntered(PointerEventArgs e)
+		{
+		}
+
+		/// <summary>
+		/// Allows the visual line element to handle pointer exited events.
+		/// </summary>
+		protected internal virtual void OnPointerExited(PointerEventArgs e)
+		{
+		}
 	}
 }
