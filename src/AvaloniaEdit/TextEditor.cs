@@ -798,8 +798,8 @@ namespace AvaloniaEdit
         public void ScrollToHorizontalOffset(double offset)
         {
             ApplyTemplate(); // ensure scrollViewer is created
-            //if (scrollViewer != null)
-            //    scrollViewer.ScrollToHorizontalOffset(offset);
+            if (ScrollViewer != null)
+                ScrollViewer.Offset = ScrollViewer.Offset.WithX(offset);
         }
 
         /// <summary>
@@ -808,8 +808,8 @@ namespace AvaloniaEdit
         public void ScrollToVerticalOffset(double offset)
         {
             ApplyTemplate(); // ensure scrollViewer is created
-            //if (scrollViewer != null)
-            //    scrollViewer.ScrollToVerticalOffset(offset);
+            if (ScrollViewer != null)
+                ScrollViewer.Offset = ScrollViewer.Offset.WithY(offset);
         }
 
         /// <summary>
